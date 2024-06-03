@@ -15,6 +15,7 @@ const serviceObject = {
   Hello_Service: {
     Hello_Port: {
       getHello: async function(args) {
+        // Make sure you call the proper OData Service here...
         let oDataURL = "http://localhost:4004/odata/v4/odata/getHello"
         let payload = {
           name: args.name.$value
