@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="HelloService"
+             targetNamespace="http://www.examples.com/wsdl/HelloService.wsdl"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://www.examples.com/wsdl/HelloService.wsdl"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+  <message name="getHelloRequest">
+    <part name="name" type="xsd:string"/>
+  </message>
+
+  <message name="getHelloResponse">
+    <part name="message" type="xsd:string"/>
+  </message>
+
+  <portType name="Hello_PortType">
+    <operation name="getHello">
+      <input message="tns:getHelloRequest"/>
+      <output message="tns:getHelloResponse"/>
+    </operation>
+  </portType>
+
+  <binding name="Hello_Binding" type="tns:Hello_PortType">
+    <soap:binding style="rpc"
+                  transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="getHello">
+      <soap:operation soapAction="urn:X-examples:HelloAction"/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+                   namespace="urn:examples:helloservice"
+                   use="encoded"/>
+      </input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+                   namespace="urn:examples:helloservice"
+                   use="encoded"/>
+      </output>
+    </operation>
+  </binding>
+
+  <service name="Hello_Service">
+    <documentation>Web service example</documentation>
+    <port binding="tns:Hello_Binding" name="Hello_Port">
+      <soap:address location="http://localhost:8000/wsdl"/>
+    </port>
+  </service>
+</definitions>

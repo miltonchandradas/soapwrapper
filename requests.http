@@ -1,0 +1,16 @@
+### GET WSDL
+GET http://localhost:3000/wsdl?wsdl
+
+
+### GET WSDL
+POST http://localhost:3000/wsdl
+Content-Type: application/xml
+
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:examples:helloservice">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:getHello soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <name xsi:type="xsd:string">Milton</name>
+      </urn:getHello>
+   </soapenv:Body>
+</soapenv:Envelope>
